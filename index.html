@@ -3,18 +3,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Data Visualizations</title>
+  <title>Grace Witulski Data Visualization</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
 </head>
 
 <body>
-  <h1>My Data Visualization Website</h1>
-  <p>My first chart!</p>
+  <h1>Grace Witulski Data Visualization</h1>
+  <p>Chart 1</p>
 
   <div id="chart"></div>
+  <div id="penguin-chart"></div>
 
   <script>
     const chart = {
@@ -34,6 +35,43 @@
     };
 
     vegaEmbed("#chart", chart);
+
+const penguins = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": "Distribution of Body Mass of Penguins",
+  "width": 400,
+  "height": 80,
+  "data": {
+    "url": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/penguins.json"
+  },
+  "mark": "area",
+  "transform": [
+    {
+      "density": "Body Mass (g)",
+      "groupby": ["Species"],
+      "extent": [2500, 6500]
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "Body Mass (g)"
+    },
+    "y": {
+      "field": "density",
+      "type": "quantitative",
+      "stack": "zero"
+    },
+    "color": {
+      "field": "Species",
+      "type": "nominal"
+    }
+  }
+};
+
+vegaEmbed("#penguin-chart", penguins);
+
   </script>
 </body>
 </html>
