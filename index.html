@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Data Visualizations</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+
+<body>
+  <h1>My Data Visualization Website</h1>
+  <p>My first chart!</p>
+
+  <div id="chart"></div>
+
+  <script>
+    const chart = {
+      data: {
+        values: [
+          {category: "A", value: 10},
+          {category: "B", value: 25},
+          {category: "C", value: 18},
+          {category: "D", value: 35}
+        ]
+      },
+      mark: "bar",
+      encoding: {
+        x: {field: "category", type: "nominal", title: "Category"},
+        y: {field: "value", type: "quantitative", title: "Value"}
+      }
+    };
+
+    vegaEmbed("#chart", chart);
+  </script>
+</body>
+</html>
